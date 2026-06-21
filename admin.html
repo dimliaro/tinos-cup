@@ -11,6 +11,18 @@
   <noscript><link rel="stylesheet" href="css/styles.css" /></noscript>
 </head>
 <body>
+  <!-- Πύλη εισόδου (μόνο για τον διαχειριστή) -->
+  <div id="loginGate" class="login-gate">
+    <form id="loginForm" class="login-box" autocomplete="on">
+      <img class="login-logo" src="logos/tinos-cup-mark.png" alt="TINOS CUP" />
+      <div class="login-title">ΔΙΑΧΕΙΡΙΣΗ · ΕΙΣΟΔΟΣ</div>
+      <input id="loginUser" class="adm-input" placeholder="Username" autocomplete="username" />
+      <input id="loginPass" class="adm-input" type="password" placeholder="Password" autocomplete="current-password" />
+      <button class="adm-btn gold" type="submit">Είσοδος</button>
+      <div id="loginErr" class="login-err"></div>
+    </form>
+  </div>
+
   <div class="app">
     <header class="masthead" style="grid-template-columns:auto 1fr auto;">
       <div class="brand-logo"><img src="logos/tinos-cup-mark.png" alt="TINOS CUP" /></div>
@@ -28,17 +40,40 @@
       <label>Κατηγορία
         <select id="selCategory"></select>
       </label>
+      <label>Τρέχουσα περίοδος
+        <select id="selCurrent"></select>
+      </label>
       <div class="admin-actions">
-        <button id="btnExport" class="adm-btn gold">⤓ Export data.js</button>
-        <button id="btnReset" class="adm-btn ghost">Καθαρισμός αλλαγών</button>
+        <button id="btnSave" class="adm-btn gold">💾 Αποθήκευση &amp; Δημοσίευση</button>
+        <button id="btnExport" class="adm-btn ghost">⤓ Export</button>
+        <button id="btnSettings" class="adm-btn ghost">⚙ Ρυθμίσεις</button>
+        <button id="btnReset" class="adm-btn ghost">↺ Επαναφορά</button>
       </div>
+    </div>
+
+    <div id="adminStatus" class="admin-status"></div>
+
+    <div id="adminSettings" class="admin-settings" hidden>
+      <p>Για <b>αυτόματη δημοσίευση</b> χρειάζεται ένα GitHub <b>fine-grained token</b> με δικαίωμα
+        <b>Contents: Read and write</b> ΜΟΝΟ στο repository <b>dimliaro/tinos-cup</b>.
+        Αποθηκεύεται <b>μόνο στον browser σου</b> (localStorage) και δεν φεύγει πουθενά αλλού.</p>
+      <p><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">→ Δημιουργία fine-grained token</a>
+        (Repository access: Only select repositories → tinos-cup · Permissions → Contents: Read and write)</p>
+      <div class="settings-row">
+        <input type="password" id="ghToken" class="adm-input grow" placeholder="github_pat_… (επικόλλησε εδώ)" autocomplete="off" />
+        <button id="btnSaveToken" class="adm-btn gold">Αποθήκευση token</button>
+        <button id="btnClearToken" class="adm-btn ghost">Διαγραφή token</button>
+      </div>
+      <div id="tokenState" class="token-state"></div>
     </div>
 
     <div class="results-grid">
       <section class="panel">
-        <div class="panel-title">ΕΙΣΑΓΩΓΗ ΣΚΟΡ</div>
+        <div class="panel-title">ΕΠΕΞΕΡΓΑΣΙΑ</div>
         <div id="editor" class="admin-editor"></div>
-        <p class="admin-hint">Οι αλλαγές αποθηκεύονται αυτόματα στον browser σου και φαίνονται αμέσως στο site (προεπισκόπηση). Για να γίνουν μόνιμες για όλους, πάτα <b>Export data.js</b> και ανέβασε το αρχείο στο repo.</p>
+        <p class="admin-hint">Άλλαξε ομάδες, αγωνιστικές, ποιος παίζει με ποιον, ημέρες/ώρες και σκορ.
+          Οι αλλαγές κρατιούνται προσωρινά στον browser σου. Πάτα <b>Αποθήκευση &amp; Δημοσίευση</b>
+          για να ενημερωθεί <b>αυτόματα</b> το live site (~1 λεπτό).</p>
       </section>
       <div class="rightcol">
         <section class="panel">
