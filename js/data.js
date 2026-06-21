@@ -1,6 +1,6 @@
 /* =============================================================================
    TINOS CUP — ΔΕΔΟΜΕΝΑ ΤΟΥΡΝΟΥΑ
-   Δημιουργήθηκε από το admin.html στις 21/6/2026, 7:50:20 μ.μ..
+   Δημιουργήθηκε από το admin.html στις 21/6/2026, 7:51:50 μ.μ..
    ============================================================================= */
 window.TINOS_DATA = {
   "tournament": {
@@ -375,67 +375,6 @@ window.TINOS_DATA = {
                   "homeScore": null,
                   "awayScore": null,
                   "date": "25/06",
-                  "time": ""
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "cat-zv6bo",
-          "gender": "GIRLS",
-          "ageLabel": "K14",
-          "dateRange": "25-27ioyniou",
-          "teams": [
-            {
-              "id": "t-i2hon",
-              "name": "Νέα ομάδα 1",
-              "short": "ΝΕΑ",
-              "color": "#2c67dd"
-            },
-            {
-              "id": "t-1g2rt",
-              "name": " 1 Νέα ομάδα",
-              "short": "ΝΕΑ",
-              "color": "#21242c"
-            },
-            {
-              "id": "t-1vlgi",
-              "name": "Νέα ομάδα 3",
-              "short": "ΝΕΑ",
-              "color": "#288f3a"
-            },
-            {
-              "id": "t-9z1xl",
-              "name": "Νέα ομάδα2 ",
-              "short": "ΝΕΑ",
-              "color": "#6f81a5"
-            },
-            {
-              "id": "t-6108m",
-              "name": " 5 Νέα ομάδα",
-              "short": "ΝΕΑ",
-              "color": "#c91d1d"
-            }
-          ],
-          "fixtures": [
-            {
-              "matchday": 1,
-              "matches": [
-                {
-                  "home": "t-1g2rt",
-                  "away": "t-1g2rt",
-                  "homeScore": null,
-                  "awayScore": null,
-                  "date": "",
-                  "time": ""
-                },
-                {
-                  "home": "t-1g2rt",
-                  "away": "t-1g2rt",
-                  "homeScore": null,
-                  "awayScore": null,
-                  "date": "",
                   "time": ""
                 }
               ]
