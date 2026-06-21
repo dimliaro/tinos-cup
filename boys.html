@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TINOS CUP — Αγόρια (Boys)</title>
+  <meta name="description" content="Tinos Cup — Αγόρια: αποτελέσματα, βαθμολογία και πρόγραμμα αγώνων." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- ============================ HEADER ============================ -->
+    <header class="masthead">
+      <a class="brand-logo" href="index.html" title="Αρχική">
+        <img src="logos/tinos-cup-badge.png" alt="TINOS CUP" />
+      </a>
+
+      <div class="title-block">
+        <img class="title-img" src="logos/tinos-cup-title.png" alt="TINOS CUP — Football Tournament" />
+      </div>
+
+      <div class="category-badge" id="categoryBadge"></div>
+    </header>
+
+    <!-- ============================ LAYOUT ============================ -->
+    <div class="layout">
+
+      <!-- Sidebar: Περίοδοι -->
+      <aside class="sidebar panel">
+        <div class="panel-title">ΠΕΡΙΟΔΟΙ</div>
+        <div class="period-list" id="periodList"></div>
+      </aside>
+
+      <!-- Content: tabs + δυναμικό περιεχόμενο -->
+      <div class="content">
+        <div class="filterbar">
+          <div class="filter-group">
+            <span class="filter-cap">ΣΕΛΙΔΑ</span>
+            <div class="seg page-nav">
+              <a class="seg-btn active" href="boys.html"><span class="seg-ic">♂</span>ΑΓΟΡΙΑ</a>
+              <a class="seg-btn" href="girls.html"><span class="seg-ic">♀</span>ΚΟΡΙΤΣΙΑ</a>
+            </div>
+          </div>
+          <div class="filter-group">
+            <span class="filter-cap">ΗΛΙΚΙΑ</span>
+            <div class="seg seg-ages" id="ageSwitch"></div>
+          </div>
+        </div>
+        <div class="tabs" id="tabs"></div>
+        <div id="mainArea"></div>
+      </div>
+    </div>
+
+    <!-- ============================ FOOTER ============================ -->
+    <footer class="tfooter">
+      <div class="slogan">Η ΤΗΝΟΣ ΠΑΙΖΕΙ ΜΠΑΛΑ</div>
+      <span class="hash">#TINOSCUP</span>
+    </footer>
+
+  </div>
+
+  <script>window.TINOS_GENDER = "BOYS";</script>
+  <script src="js/data.js"></script>
+  <script src="js/standings.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

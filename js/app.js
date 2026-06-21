@@ -62,15 +62,17 @@
   }
 
   // ---------------------------------------------------------------- state
-  let activePeriodId = (data.periods.find((p) => p.categories.length) || data.periods[0]).id;
-  let activeTab = "overview"; // "overview" ή category id
-  let activeGender = "ALL";   // "ALL" | "BOYS" | "GIRLS" — φίλτρο φύλου
+  // Το φύλο ορίζεται από τη ΣΕΛΙΔΑ (boys.html / girls.html) μέσω window.TINOS_GENDER.
+  // Έτσι κάθε σελίδα είναι αυτόνομη και δεν "χάνεται" η περίοδος όταν αλλάζεις φύλο.
+  let activeGender = String(window.TINOS_GENDER || "ALL").toUpperCase();
   let activeAge = "ALL";      // "ALL" | "K8".."K15" — φίλτρο ηλικιακού γκρουπ
-
-  // Όλα τα ηλικιακά γκρουπ (εμφανίζονται πάντα ως επιλογές, ακόμη κι αν δεν έχουν αγώνες).
   const AGE_GROUPS = ["K8", "K9", "K10", "K11", "K12", "K13", "K14", "K15"];
+  let activeTab = "overview"; // "overview" ή category id
 
   function currentPeriod() { return data.periods.find((p) => p.id === activePeriodId); }
+
+  // Ξεκίνα στην πρώτη περίοδο που έχει αγώνες για το φύλο της σελίδας.
+  let activePeriodId = (data.periods.find((p) => catsFor(p).length) || data.periods[0]).id;
 
   // Κατηγορίες μιας περιόδου, φιλτραρισμένες με βάση φύλο + ηλικιακό γκρουπ.
   function catsFor(period) {
