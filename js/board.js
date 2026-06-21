@@ -128,7 +128,7 @@
       tr.appendChild(el("td", null, String(r.win)));
       tr.appendChild(el("td", null, String(r.draw)));
       tr.appendChild(el("td", null, String(r.loss)));
-      tr.appendChild(el("td", null, `${r.gf}-${r.ga}`));
+      tr.appendChild(el("td", "goals", `${r.gf}-${r.ga}`));
       tr.appendChild(el("td", null, gd));
       tr.appendChild(el("td", "pts", String(r.points)));
       tb.appendChild(tr);
