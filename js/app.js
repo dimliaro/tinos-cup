@@ -71,8 +71,13 @@
 
   function currentPeriod() { return data.periods.find((p) => p.id === activePeriodId); }
 
-  // Ξεκίνα στην πρώτη περίοδο που έχει αγώνες για το φύλο της σελίδας.
-  let activePeriodId = (data.periods.find((p) => catsFor(p).length) || data.periods[0]).id;
+  // Ξεκίνα στην ΤΡΕΧΟΥΣΑ περίοδο (data.currentPeriodId) αν έχει αγώνες για το φύλο
+  // της σελίδας· αλλιώς στην πρώτη περίοδο που έχει.
+  let activePeriodId = (
+    data.periods.find((p) => p.id === data.currentPeriodId && catsFor(p).length) ||
+    data.periods.find((p) => catsFor(p).length) ||
+    data.periods[0]
+  ).id;
 
   // Κατηγορίες μιας περιόδου, φιλτραρισμένες με βάση φύλο + ηλικιακό γκρουπ.
   function catsFor(period) {

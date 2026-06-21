@@ -18,6 +18,12 @@ window.TINOS_DATA = {
     slogan: "Η ΤΗΝΟΣ ΠΑΙΖΕΙ ΜΠΑΛΑ",
   },
 
+  /* ⭐ ΤΡΕΧΟΥΣΑ ΠΕΡΙΟΔΟΣ ⭐
+     Βάλε εδώ το id της περιόδου που "τρέχει" τώρα (π.χ. "p4").
+     Όταν ανοίγει το link, η σελίδα φορτώνει ΑΥΤΟΜΑΤΑ σε αυτή την περίοδο.
+     Τα id είναι: p1, p2, p3, p4, p5, p6, p7 (βλέπε παρακάτω). */
+  currentPeriodId: "p4",
+
   // Οι περίοδοι που φαίνονται στην αριστερή στήλη.
   // Κάθε περίοδος έχει μία ή περισσότερες ηλικιακές κατηγορίες (categories).
   periods: [
@@ -84,28 +90,6 @@ window.TINOS_DATA = {
             { matchday: 3, matches: [
               { home: "pas",   away: "panery", homeScore: null, awayScore: null, date: "21/06", time: "16:30" },
               { home: "olymp", away: "skorp",  homeScore: null, awayScore: null, date: "21/06", time: "16:30" },
-            ]},
-          ],
-        },
-        {
-          id: "p3-girls-k10",
-          gender: "GIRLS",
-          ageLabel: "K10",
-          dateRange: "18 ΙΟΥΝΙΟΥ - 20 ΙΟΥΝΙΟΥ",
-          teams: [
-            { id: "g-tinos", name: "ΤΗΝΟΣ FC",   short: "ΤΗΝ", color: "#1e88e5" },
-            { id: "g-syros", name: "ΣΥΡΟΣ",      short: "ΣΥΡ", color: "#8e24aa" },
-            { id: "g-myk",   name: "ΜΥΚΟΝΟΣ",    short: "ΜΥΚ", color: "#00897b" },
-          ],
-          fixtures: [
-            { matchday: 1, matches: [
-              { home: "g-tinos", away: "g-syros", homeScore: 3, awayScore: 2, date: "19/06", time: "11:00" },
-            ]},
-            { matchday: 2, matches: [
-              { home: "g-syros", away: "g-myk",   homeScore: null, awayScore: null, date: "19/06", time: "12:00" },
-            ]},
-            { matchday: 3, matches: [
-              { home: "g-myk",   away: "g-tinos", homeScore: null, awayScore: null, date: "20/06", time: "11:00" },
             ]},
           ],
         },

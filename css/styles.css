@@ -69,6 +69,7 @@ body::before {
   box-shadow: 0 0 0 4px rgba(233,169,58,.12), var(--shadow);
   flex: none;
   overflow: hidden;
+  padding: 14px;
 }
 .brand-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .brand-logo span { font-family: var(--font-head); font-weight: 700; font-size: 13px; letter-spacing: 2px; color: var(--gold-bright); text-align: center; line-height: 1.05; }
@@ -262,7 +263,9 @@ body::before {
 }
 .crest img { width: 100%; height: 100%; object-fit: cover; }
 /* μεγαλύτερα logo στους αγώνες, ακριβώς δίπλα στο σκορ/VS */
-.match-row .crest { width: 44px; height: 44px; }
+.match-row { align-items: center; }
+.match-row .team { align-items: center; }
+.match-row .crest { width: 58px; height: 58px; align-self: center; }
 .score-box {
   display: flex; align-items: center; justify-content: center; gap: 8px;
   background: #061735; border: 1.5px solid rgba(233,169,58,.30);
@@ -400,6 +403,7 @@ body::before {
   border: 2px solid var(--gold); border-radius: 50%;
   box-shadow: 0 0 0 5px rgba(233,169,58,.12), var(--shadow);
   overflow: hidden;
+  padding: 24px;
 }
 .home-badge img { width: 100%; height: 100%; object-fit: contain; }
 .home-lead { color: var(--text-dim); font-size: 15px; margin: 0 auto 26px; max-width: 540px; }
@@ -478,7 +482,7 @@ body::before {
   .match-row { grid-template-columns: 26px 1fr 70px 1fr; gap: 6px; padding: 9px 9px; }
   .team { gap: 7px; font-size: 12.5px; }
   .crest { width: 26px; height: 26px; }
-  .match-row .crest { width: 36px; height: 36px; }
+  .match-row .crest { width: 46px; height: 46px; }
   .score-box { height: 34px; font-size: 18px; }
   .standings { font-size: 12px; }
   .standings thead th.team-col { padding-left: 30px; }
