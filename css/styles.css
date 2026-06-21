@@ -507,7 +507,7 @@ body::before {
     gap: 8px; padding: 12px 14px; justify-items: stretch;
   }
   .match-row .match-num { display: none; }
-  .match-row .team { font-size: 13.5px; gap: 10px; justify-content: flex-start; text-align: left; }
+  .match-row .team { font-size: 13.5px; gap: 10px; justify-content: center; text-align: center; }
   .match-row .team.home { grid-area: home; }
   .match-row .team.away { grid-area: away; }
   .match-row .team.home .tname { order: 2; }          /* σήμα αριστερά, όνομα δεξιά */
