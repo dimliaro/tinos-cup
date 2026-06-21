@@ -90,6 +90,21 @@
     if (firstWith) activePeriodId = firstWith.id;
   }
 
+  // Τα ηλικιακά γκρουπ που υπάρχουν ΟΝΤΩΣ στην τρέχουσα περίοδο (με βάση το φύλο).
+  // Έτσι π.χ. η περίοδος των γυναικών δείχνει μόνο K15.
+  function availableAges() {
+    const p = currentPeriod();
+    if (!p) return [];
+    const set = new Set();
+    p.categories.forEach((c) => {
+      const gOk = activeGender === "ALL" || (c.gender || "").toUpperCase() === activeGender;
+      if (gOk && c.ageLabel) set.add(c.ageLabel.toUpperCase());
+    });
+    const known = AGE_GROUPS.filter((g) => set.has(g));
+    const extra = [...set].filter((a) => !AGE_GROUPS.includes(a));
+    return known.concat(extra);
+  }
+
   // ============================================================ RENDER: header
   function renderHeader(cat) {
     const badge = $("#categoryBadge");
@@ -126,6 +141,7 @@
     ];
     opts.forEach((o) => host.appendChild(segButton(o.label, activeGender === o.id, () => {
       activeGender = o.id;
+      activeAge = "ALL";        // αλλάζοντας φύλο, μηδένισε το φίλτρο ηλικίας
       activeTab = "overview";
       ensurePeriodWithCats();
       render();
@@ -139,7 +155,7 @@
     host.appendChild(segButton("ΟΛΕΣ", activeAge === "ALL", () => {
       activeAge = "ALL"; activeTab = "overview"; ensurePeriodWithCats(); render();
     }));
-    AGE_GROUPS.forEach((g) => host.appendChild(segButton(g, activeAge === g, () => {
+    availableAges().forEach((g) => host.appendChild(segButton(g, activeAge === g, () => {
       activeAge = g; activeTab = "overview"; ensurePeriodWithCats(); render();
     })));
   }
@@ -231,7 +247,7 @@
         const h = el("div", "team home");
         h.appendChild(el("span", "tname", home.name)); h.appendChild(crest(home));
         const a = el("div", "team away");
-        a.appendChild(el("span", "tname", away.name)); a.appendChild(crest(away));
+        a.appendChild(crest(away)); a.appendChild(el("span", "tname", away.name));
 
         const sb = el("div", "score-box" + (played ? "" : " pending"));
         sb.innerHTML = played
@@ -304,6 +320,8 @@
   // ============================================================ MAIN RENDER
   function render() {
     const period = currentPeriod();
+    // αν το ενεργό ηλικιακό γκρουπ δεν υπάρχει σε αυτή την περίοδο, γύρνα σε "ΟΛΕΣ"
+    if (activeAge !== "ALL" && !availableAges().includes(activeAge)) activeAge = "ALL";
     renderGenderSwitch();
     renderAgeSwitch();
     renderSidebar();
