@@ -524,8 +524,8 @@ body::before {
 @media (max-width: 420px) {
   .brand-logo { width: 84px; height: 84px; }
   .period-btn { flex: 1 1 100%; }
-  .match-row { grid-template-columns: 22px 1fr 60px 1fr; }
-  .team .tname { font-size: 11.5px; }
+  /* ΣΗΜ.: ΜΗ βάζεις εδώ grid-template-columns στο .match-row —
+     η stacked διάταξη ορίζεται στο @media 760 και πρέπει να ισχύει και εδώ. */
   .standings thead th { font-size: 9.5px; padding: 7px 1px; }
   .standings tbody td { padding: 8px 1px; font-size: 11px; }
 }
