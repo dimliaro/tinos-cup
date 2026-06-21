@@ -475,9 +475,26 @@ body::before {
   .choice-card { padding: 28px 18px; }
   .home-badge { width: 132px; height: 132px; }
 
-  /* η βαθμολογία να κυλάει οριζόντια μέσα στο panel αντί να σπρώχνει όλη τη σελίδα */
-  .std-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .std-wrap .standings { min-width: 340px; }
+  /* ΒΑΘΜΟΛΟΓΙΑ στο κινητό: να χωράει ΟΛΗ χωρίς οριζόντιο scroll */
+  .std-wrap { overflow-x: visible; }
+  .std-wrap .standings { min-width: 0; }
+  .standings { table-layout: fixed; width: 100%; }
+  .standings thead th, .standings tbody td { padding: 8px 1px; font-size: 11.5px; }
+  .standings thead th { font-size: 10px; letter-spacing: .3px; }
+  .standings thead th.team-col { padding-left: 4px; text-align: left; }
+  /* πλάτη στηλών (απαραίτητο με table-layout: fixed) */
+  .standings thead th:first-child { width: 20px; }
+  .standings thead th:nth-child(3),
+  .standings thead th:nth-child(4),
+  .standings thead th:nth-child(5),
+  .standings thead th:nth-child(6) { width: 21px; }
+  .standings thead th:nth-child(7) { width: 34px; }   /* ΓΚΟΛ */
+  .standings thead th:nth-child(8) { width: 26px; }   /* ΔΓ */
+  .standings thead th:nth-child(9) { width: 24px; }   /* Β */
+  /* το σήμα ΔΙΠΛΑ στο όνομα (όχι από πάνω) — το όνομα αναδιπλώνεται μέσα στη στήλη */
+  .standings .team-cell .tc { flex-wrap: nowrap; align-items: center; gap: 6px; min-width: 0; }
+  .standings .team-cell .tc > span:last-child { white-space: normal; min-width: 0; line-height: 1.15; }
+  .standings .crest { width: 20px; height: 20px; flex: none; }
 
   .match-row { grid-template-columns: 26px 1fr 70px 1fr; gap: 6px; padding: 9px 9px; }
   .team { gap: 7px; font-size: 12.5px; }
@@ -494,6 +511,6 @@ body::before {
   .period-btn { flex: 1 1 100%; }
   .match-row { grid-template-columns: 22px 1fr 60px 1fr; }
   .team .tname { font-size: 11.5px; }
-  .standings thead th { font-size: 10.5px; padding: 7px 2px; }
-  .standings tbody td { padding: 9px 2px; }
+  .standings thead th { font-size: 9.5px; padding: 7px 1px; }
+  .standings tbody td { padding: 8px 1px; font-size: 11px; }
 }
