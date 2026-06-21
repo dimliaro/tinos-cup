@@ -7,7 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <script>document.write('<link rel="stylesheet" href="css/styles.css?v=' + Date.now() + '">');</script>
+  <noscript><link rel="stylesheet" href="css/styles.css" /></noscript>
 </head>
 <body>
   <div class="app">
@@ -48,8 +49,14 @@
     </div>
   </div>
 
-  <script src="js/data.js"></script>
-  <script src="js/standings.js"></script>
-  <script src="js/admin.js"></script>
+  <script>
+    // cache-busting: φόρτωσε πάντα την τελευταία έκδοση
+    (function () {
+      var v = "?v=" + Date.now();
+      ["js/data.js", "js/standings.js", "js/admin.js"].forEach(function (s) {
+        document.write('<script src="' + s + v + '"><\/script>');
+      });
+    })();
+  </script>
 </body>
 </html>
