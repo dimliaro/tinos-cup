@@ -45,7 +45,8 @@
       </label>
       <div class="admin-actions">
         <button id="btnSave" class="adm-btn gold">💾 Αποθήκευση &amp; Δημοσίευση</button>
-        <button id="btnExport" class="adm-btn ghost">⤓ Export</button>
+        <button id="btnExportPng" class="adm-btn ghost">🖼 Export PNG (TV)</button>
+        <button id="btnExport" class="adm-btn ghost">⤓ Export data.js</button>
         <button id="btnSettings" class="adm-btn ghost">⚙ Ρυθμίσεις</button>
         <button id="btnReset" class="adm-btn ghost">↺ Επαναφορά</button>
       </div>
@@ -84,11 +85,12 @@
     </div>
   </div>
 
+  <script src="js/vendor/html2canvas.min.js"></script>
   <script>
     // cache-busting: φόρτωσε πάντα την τελευταία έκδοση
     (function () {
       var v = "?v=" + Date.now();
-      ["js/data.js", "js/standings.js", "js/admin.js"].forEach(function (s) {
+      ["js/data.js", "js/standings.js", "js/board.js", "js/admin.js"].forEach(function (s) {
         document.write('<script src="' + s + v + '"><\/script>');
       });
     })();

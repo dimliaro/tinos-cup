@@ -296,6 +296,19 @@ window.TINOS_DATA = `;
 
   function b64utf8(str) { return btoa(unescape(encodeURIComponent(str))); }
 
+  async function exportCurrentPng() {
+    const period = work.periods[pIndex];
+    const cat = period && period.categories[cIndex];
+    if (!cat) { flash("Διάλεξε κατηγορία για να βγει το γραφικό.", true); return; }
+    try {
+      flash("Δημιουργία PNG…");
+      await window.TinosBoard.exportPng(work, period, cat);
+      flash("✓ Κατέβηκε το PNG (1920×1080) για " + (cat.gender || "") + " " + (cat.ageLabel || "") + ".");
+    } catch (e) {
+      flash("Σφάλμα PNG: " + (e.message || e), true);
+    }
+  }
+
   function downloadDataJs() {
     const blob = new Blob([buildDataJs()], { type: "text/javascript;charset=utf-8" });
     const url = URL.createObjectURL(blob);
@@ -351,7 +364,8 @@ window.TINOS_DATA = `;
         if (r.status === 403 || r.status === 401) throw new Error("Χωρίς δικαίωμα εγγραφής. Το token πρέπει να έχει Contents: Read & write στο " + REPO + ".");
         throw new Error("Αποθήκευση απέτυχε: " + detail);
       }
-      flash("✓ Αποθηκεύτηκε! Θα φανεί live σε ~1 λεπτό (GitHub Pages build).");
+      flash("✓ Αποθηκεύτηκε! Θα φανεί live σε ~1 λεπτό. Δημιουργία PNG…");
+      try { await exportCurrentPng(); } catch (e2) {}
     } catch (e) {
       flash(e.message || String(e), true);
     } finally {
@@ -414,6 +428,7 @@ window.TINOS_DATA = `;
     fillSelectors();
     renderEditor();
     $("#btnSave").onclick = saveToGitHub;
+    $("#btnExportPng").onclick = exportCurrentPng;
     $("#btnExport").onclick = downloadDataJs;
     $("#btnReset").onclick = resetDraft;
     $("#btnSettings").onclick = () => openSettings();

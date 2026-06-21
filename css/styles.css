@@ -600,3 +600,97 @@ body::before {
   .standings thead th { font-size: 9.5px; padding: 7px 1px; }
   .standings tbody td { padding: 8px 1px; font-size: 11px; }
 }
+
+/* ============================ BOARD (export PNG 1920×1080 για TV) ============================ */
+.board {
+  position: relative; width: 1920px; min-height: 1080px; overflow: hidden; color: #fff;
+  font-family: var(--font-body);
+  background:
+    radial-gradient(1400px 800px at 50% -12%, #0e2a5e 0%, transparent 60%),
+    linear-gradient(180deg, #07173a 0%, #04102a 60%, #030c20 100%);
+}
+.board .bd-streak { position: absolute; width: 700px; height: 260px; pointer-events: none; opacity: .45;
+  background: linear-gradient(62deg, transparent 42%, rgba(233,169,58,.55) 50%, transparent 58%); filter: blur(1px); }
+.board .bd-streak.s1 { top: -70px; right: -120px; transform: rotate(-18deg); }
+.board .bd-streak.s2 { bottom: -90px; left: -140px; transform: rotate(-18deg); }
+.board .bd-pitch { position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(90deg, transparent 0 98px, rgba(255,255,255,.012) 98px 100px); }
+.board .bd-wrap { position: relative; z-index: 1; display: flex; flex-direction: column; padding: 22px 40px 10px; min-height: 1080px; }
+
+.board .bd-header { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 26px; margin-bottom: 12px; }
+.board .bd-logo { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--gold); padding: 13px;
+  background: radial-gradient(circle at 50% 35%, #15346e, #081b3f); box-shadow: 0 0 0 5px rgba(233,169,58,.12), var(--shadow);
+  display: grid; place-items: center; }
+.board .bd-logo img { width: 100%; height: 100%; object-fit: contain; }
+.board .bd-titleimg { height: 86px; width: auto; }
+.board .bd-cat { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.board .bd-cat .g { font-family: var(--font-head); letter-spacing: 6px; color: var(--text-dim); font-size: 24px; }
+.board .bd-cat .a { font-family: var(--font-head); font-weight: 700; font-size: 74px; line-height: .78; color: #fff; }
+.board .bd-cat .d { display: inline-flex; align-items: center; gap: 10px; border: 1.5px solid var(--gold); border-radius: 12px;
+  padding: 10px 18px; color: var(--gold-bright); font-family: var(--font-head); letter-spacing: 1.5px; font-size: 21px; }
+
+.board .bd-body { flex: 1; display: grid; grid-template-columns: 230px 1fr 410px; gap: 20px; align-items: start; }
+.board .bd-col { display: flex; flex-direction: column; gap: 18px; }
+.board .bd-panel { background: linear-gradient(180deg, rgba(10,26,60,.92), rgba(7,18,44,.92));
+  border: 1.5px solid var(--panel-border); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; }
+.board .bd-ptitle { font-family: var(--font-head); font-weight: 600; letter-spacing: 2px; text-align: center; font-size: 27px; padding: 16px 12px 14px; }
+
+.board .bd-periods .bd-ptitle { font-size: 20px; letter-spacing: 3px; color: var(--gold-bright); }
+.board .bd-plist { display: flex; flex-direction: column; gap: 12px; padding: 4px 14px 18px; }
+.board .bd-pbtn { position: relative; text-align: center; font-family: var(--font-head); letter-spacing: 1.5px; font-size: 16px;
+  color: var(--gold-bright); border: 1.5px solid var(--gold-dim); border-radius: 10px; padding: 13px 10px; }
+.board .bd-pbtn.active { background: linear-gradient(180deg, var(--gold-bright), var(--gold)); color: #07172f; font-weight: 600; border-color: var(--gold); }
+.board .bd-pbtn.active::after { content: "\203A"; position: absolute; right: 14px; top: 9px; font-size: 24px; font-weight: 700; }
+
+.board .bd-band { text-align: center; background: linear-gradient(180deg, var(--blue-band-2), var(--blue-band)); color: var(--gold-bright);
+  font-family: var(--font-head); font-style: italic; font-weight: 600; letter-spacing: 2px; font-size: 20px; padding: 7px;
+  border-top: 1px solid rgba(233,169,58,.18); border-bottom: 1px solid rgba(233,169,58,.18); }
+.board .bd-mlist { padding: 9px 16px; display: flex; flex-direction: column; gap: 9px; }
+.board .bd-match { display: grid; grid-template-columns: 40px 1fr 120px 1fr; align-items: center; gap: 12px;
+  background: linear-gradient(180deg, var(--row-bg-2), var(--row-bg)); border: 1.4px solid rgba(233,169,58,.30); border-radius: 10px; padding: 9px 14px; }
+.board .bd-num { width: 30px; height: 30px; display: grid; place-items: center; border: 1.5px solid var(--gold-dim); border-radius: 7px;
+  color: var(--gold-bright); font-family: var(--font-head); font-size: 16px; }
+.board .bd-team { display: flex; align-items: center; gap: 12px; font-family: var(--font-head); font-weight: 600; letter-spacing: 1px; font-size: 19px; color: #fff; }
+.board .bd-team .nm { flex: 1; }
+.board .bd-team.a { }
+.board .bd-team.a .nm { text-align: right; }
+.board .bd-score { display: flex; align-items: center; justify-content: center; gap: 10px; background: #061735;
+  border: 1.5px solid rgba(233,169,58,.30); border-radius: 8px; height: 44px; font-family: var(--font-head); font-size: 25px; font-weight: 700; color: #fff; }
+.board .bd-score .sep { color: var(--text-faint); }
+.board .bd-score.pending { color: var(--text-faint); font-size: 19px; letter-spacing: 2px; }
+.board .bd-crest { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; flex: none;
+  font-family: var(--font-head); font-size: 14px; font-weight: 700; color: #fff; background: #1a2a4a; border: 1.5px solid rgba(255,255,255,.65); overflow: hidden; }
+.board .bd-crest.logo { background: transparent; border: none; }
+.board .bd-crest img { width: 100%; height: 100%; object-fit: contain; }
+.board .bd-bye { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0 16px; padding: 8px 14px;
+  background: rgba(233,169,58,.08); border: 1.4px dashed var(--gold-dim); border-radius: 10px;
+  font-family: var(--font-head); letter-spacing: 1.5px; font-size: 17px; color: var(--text-dim); }
+.board .bd-bye b { color: var(--gold-bright); }
+.board .bd-bye .bd-crest { width: 30px; height: 30px; }
+
+.board .bd-standings { width: 100%; border-collapse: collapse; }
+.board .bd-standings th { font-family: var(--font-head); font-weight: 500; letter-spacing: 1px; color: var(--text-dim); font-size: 15px;
+  padding: 10px 3px; text-align: center; border-bottom: 1px solid rgba(233,169,58,.25); }
+.board .bd-standings th.tc { text-align: left; padding-left: 46px; }
+.board .bd-standings td { padding: 12px 3px; text-align: center; color: var(--text-dim); font-size: 17px; }
+.board .bd-standings tr { border-bottom: 1px solid rgba(255,255,255,.05); }
+.board .bd-standings .rk { width: 26px; height: 26px; margin: 0 auto; display: grid; place-items: center;
+  border: 1.4px solid var(--gold-dim); border-radius: 6px; color: var(--gold-bright); font-family: var(--font-head); font-size: 14px; }
+.board .bd-standings td.tcell { text-align: left; }
+.board .bd-standings .tc2 { display: flex; align-items: center; gap: 10px; font-family: var(--font-head); font-weight: 600; color: #fff; font-size: 17px; white-space: nowrap; }
+.board .bd-standings .tc2 .bd-crest { width: 32px; height: 32px; font-size: 10px; }
+.board .bd-standings td.pts { color: var(--gold-bright); font-family: var(--font-head); font-weight: 700; font-size: 21px; }
+.board .bd-stbox { padding: 2px 16px 16px; }
+
+.board .bd-sched { padding: 4px 18px 16px; }
+.board .bd-sday { font-family: var(--font-head); font-style: italic; color: var(--gold-bright); letter-spacing: 1px; font-size: 19px; margin: 12px 0 8px; }
+.board .bd-srow { display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: baseline; padding: 6px 0; color: var(--text-dim); font-size: 16px; border-bottom: 1px dashed rgba(255,255,255,.06); }
+.board .bd-srow .tm { color: #dfe8fb; font-style: italic; }
+.board .bd-srow .dt { color: var(--text-faint); }
+.board .bd-srow .ti { color: var(--gold-bright); text-align: right; min-width: 54px; }
+.board .bd-srow.bye .tm { color: var(--gold-bright); }
+
+.board .bd-footer { text-align: center; padding: 8px 0 2px; margin-top: auto; }
+.board .bd-slogan { font-family: var(--font-head); letter-spacing: 6px; font-size: 26px; color: var(--gold); }
+.board .bd-slogan span { color: var(--gold); margin: 0 14px; }
+.board .bd-hash { display: block; margin-top: 6px; color: var(--gold-bright); font-family: var(--font-head); letter-spacing: 4px; font-size: 16px; }
