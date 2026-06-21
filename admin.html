@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TINOS CUP — Διαχείριση Σκορ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="masthead" style="grid-template-columns:auto 1fr auto;">
+      <div class="brand-logo"><img src="logos/tinos-cup-badge.png" alt="TINOS CUP" /></div>
+      <div class="title-block">
+        <div class="title-main"><span class="t1">TINOS </span><span class="t2">CUP</span></div>
+        <div class="title-sub">ΔΙΑΧΕΙΡΙΣΗ ΣΚΟΡ — ADMIN</div>
+      </div>
+      <a class="date-chip" href="index.html" style="text-decoration:none;">↩ ΠΡΟΒΟΛΗ SITE</a>
+    </header>
+
+    <div class="admin-bar">
+      <label>Περίοδος
+        <select id="selPeriod"></select>
+      </label>
+      <label>Κατηγορία
+        <select id="selCategory"></select>
+      </label>
+      <div class="admin-actions">
+        <button id="btnExport" class="adm-btn gold">⤓ Export data.js</button>
+        <button id="btnReset" class="adm-btn ghost">Καθαρισμός αλλαγών</button>
+      </div>
+    </div>
+
+    <div class="results-grid">
+      <section class="panel">
+        <div class="panel-title">ΕΙΣΑΓΩΓΗ ΣΚΟΡ</div>
+        <div id="editor" class="admin-editor"></div>
+        <p class="admin-hint">Οι αλλαγές αποθηκεύονται αυτόματα στον browser σου και φαίνονται αμέσως στο site (προεπισκόπηση). Για να γίνουν μόνιμες για όλους, πάτα <b>Export data.js</b> και ανέβασε το αρχείο στο repo.</p>
+      </section>
+      <div class="rightcol">
+        <section class="panel">
+          <div class="panel-title">ΖΩΝΤΑΝΗ ΒΑΘΜΟΛΟΓΙΑ</div>
+          <div id="previewStandings" style="padding:0 14px 16px;"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/standings.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

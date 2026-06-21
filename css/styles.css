@@ -1,0 +1,398 @@
+/* =============================================================================
+   TINOS CUP — Stylesheet
+   ============================================================================= */
+:root {
+  --bg-deep:      #04122e;
+  --navy-900:     #061633;
+  --navy-850:     #0a1c40;
+  --navy-800:     #0c2150;
+  --navy-700:     #123066;
+  --row-bg:       #0b1f48;
+  --row-bg-2:     #0e2350;
+  --blue-band:    #14305f;
+  --blue-band-2:  #1c4080;
+  --gold:         #e9a93a;
+  --gold-bright:  #f6cf78;
+  --gold-dim:     rgba(233,169,58,.55);
+  --text:         #ffffff;
+  --text-dim:     #9fb2d6;
+  --text-faint:   #6f84ad;
+  --panel-border: rgba(233,169,58,.45);
+  --radius:       14px;
+  --shadow:       0 10px 40px rgba(0,0,0,.45);
+  --font-head: "Oswald", "Arial Narrow", sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background:
+    radial-gradient(1200px 700px at 50% -10%, #0e2a5e 0%, transparent 60%),
+    linear-gradient(180deg, #07173a 0%, #04102a 60%, #030c20 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* faint stadium / pitch lines overlay */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(900px 400px at 50% 120%, rgba(60,110,190,.18), transparent 70%),
+    repeating-linear-gradient(90deg, transparent 0 78px, rgba(255,255,255,.012) 78px 80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.app { position: relative; z-index: 1; max-width: 1680px; margin: 0 auto; padding: 22px clamp(14px, 2.4vw, 34px) 40px; }
+
+/* ============================ HEADER ============================ */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 22px;
+  padding: 6px 4px 18px;
+}
+.brand-logo {
+  width: 104px; height: 104px;
+  display: grid; place-items: center;
+  background: radial-gradient(circle at 50% 35%, #15346e, #081b3f);
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(233,169,58,.12), var(--shadow);
+  flex: none;
+  overflow: hidden;
+}
+.brand-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.brand-logo span { font-family: var(--font-head); font-weight: 700; font-size: 13px; letter-spacing: 2px; color: var(--gold-bright); text-align: center; line-height: 1.05; }
+.brand-logo .ball { font-size: 30px; }
+
+.title-block { display: flex; flex-direction: column; gap: 2px; }
+.title-main { font-family: var(--font-head); font-weight: 700; letter-spacing: 3px; line-height: .92; }
+.title-main .t1 { font-size: clamp(34px, 5vw, 62px); color: #fff; }
+.title-main .t2 { font-size: clamp(34px, 5vw, 62px); color: var(--gold); }
+.title-sub { font-family: var(--font-head); font-weight: 500; letter-spacing: 8px; color: var(--text-dim); font-size: clamp(11px, 1.4vw, 16px); }
+
+.category-badge { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; text-align: right; }
+.category-badge .cat-line { display: flex; align-items: baseline; gap: 10px; }
+.category-badge .gender { font-family: var(--font-head); letter-spacing: 4px; color: var(--text-dim); font-size: 16px; align-self: flex-start; }
+.category-badge .age { font-family: var(--font-head); font-weight: 700; font-size: clamp(40px, 6vw, 72px); color: #fff; line-height: .85; }
+.date-chip {
+  display: inline-flex; align-items: center; gap: 9px;
+  border: 1.5px solid var(--gold); border-radius: 10px;
+  padding: 7px 14px; color: var(--gold-bright);
+  font-family: var(--font-head); letter-spacing: 1.5px; font-size: 14px;
+}
+.date-chip svg { width: 16px; height: 16px; }
+
+/* ============================ LAYOUT ============================ */
+.layout {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+.content { min-width: 0; }
+.results-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 18px;
+  align-items: start;
+}
+
+/* ============================ PANELS ============================ */
+.panel {
+  background: linear-gradient(180deg, rgba(10,26,60,.92), rgba(7,18,44,.92));
+  border: 1.5px solid var(--panel-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.panel + .panel { margin-top: 18px; }
+.panel-title {
+  font-family: var(--font-head); font-weight: 600; letter-spacing: 2px;
+  text-align: center; font-size: 22px; color: #fff;
+  padding: 16px 12px 14px;
+}
+
+/* ============================ SIDEBAR (PERIODS) ============================ */
+.sidebar .panel-title { font-size: 17px; letter-spacing: 3px; color: var(--gold-bright); }
+.period-list { display: flex; flex-direction: column; gap: 12px; padding: 4px 14px 20px; }
+.period-btn {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); letter-spacing: 1.5px; font-size: 15px;
+  color: var(--gold-bright);
+  background: transparent;
+  border: 1.5px solid var(--gold-dim);
+  border-radius: 10px;
+  padding: 12px 10px;
+  cursor: pointer;
+  transition: all .15s ease;
+  text-transform: none;
+}
+.period-btn:hover { border-color: var(--gold); background: rgba(233,169,58,.08); }
+.period-btn.active {
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+  color: #07172f; font-weight: 600; border-color: var(--gold);
+  box-shadow: 0 6px 18px rgba(233,169,58,.35);
+}
+.period-btn.active::after {
+  content: "›"; position: absolute; right: 12px; font-size: 22px; font-weight: 700; line-height: 0;
+}
+.period-btn.empty { opacity: .55; }
+.period-btn .dot { display:none; }
+
+/* ============================ FILTER BAR (φύλο + ηλικία) ============================ */
+.filterbar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px;
+  margin-bottom: 16px;
+}
+.filter-group { display: flex; align-items: center; gap: 11px; min-width: 0; }
+.filter-cap {
+  font-family: var(--font-head); letter-spacing: 3px; font-size: 12px;
+  color: var(--gold-dim); text-transform: uppercase; flex: none;
+}
+.seg {
+  display: inline-flex; flex-wrap: wrap; gap: 3px;
+  background: linear-gradient(180deg, rgba(12,33,80,.9), rgba(6,21,49,.9));
+  border: 1.5px solid var(--gold-dim); border-radius: 11px; padding: 4px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 4px 14px rgba(0,0,0,.28);
+}
+.seg-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-head); letter-spacing: 1.5px; font-size: 13px;
+  color: var(--text-dim); background: transparent; border: none;
+  border-radius: 8px; padding: 8px 16px; cursor: pointer;
+  transition: all .15s ease; white-space: nowrap;
+}
+.seg-btn:hover { color: #fff; background: rgba(233,169,58,.10); }
+.seg-btn.active {
+  color: #07172f; font-weight: 700;
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+  box-shadow: 0 3px 12px rgba(233,169,58,.35);
+}
+.seg-btn .seg-ic { font-size: 15px; line-height: 1; opacity: .9; }
+.seg-btn.active .seg-ic { opacity: 1; }
+.seg-ages .seg-btn { padding: 8px 13px; }
+
+/* λογότυπα ομάδων — μόνο το logo, χωρίς χρωματιστό φόντο */
+.crest.has-logo {
+  background: transparent !important; border: none; box-shadow: none;
+}
+.crest.has-logo img { object-fit: contain; }
+
+/* ============================ BYE / ΡΕΠΟ ============================ */
+.bye-note {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  margin: 10px 16px 0; padding: 8px 14px;
+  background: rgba(233,169,58,.08);
+  border: 1.4px dashed var(--gold-dim); border-radius: 10px;
+  font-family: var(--font-head); letter-spacing: 1.5px; font-size: 14px;
+  color: var(--text-dim);
+}
+.bye-note b { color: var(--gold-bright); font-weight: 600; }
+.bye-note .crest { width: 24px; height: 24px; font-size: 9px; }
+.schedule .sched-row.bye .teams { color: var(--gold-bright); font-style: italic; }
+
+/* ============================ CATEGORY TABS ============================ */
+.tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+.tab {
+  font-family: var(--font-head); letter-spacing: 1.5px; font-size: 14px;
+  color: var(--text-dim);
+  background: rgba(12,33,80,.6);
+  border: 1.5px solid rgba(233,169,58,.25);
+  border-radius: 999px;
+  padding: 9px 18px; cursor: pointer; transition: all .15s ease;
+}
+.tab:hover { color: #fff; border-color: var(--gold-dim); }
+.tab.active { color: #07172f; background: linear-gradient(180deg, var(--gold-bright), var(--gold)); border-color: var(--gold); font-weight: 600; }
+
+/* ============================ RESULTS (center) ============================ */
+.matchday-band {
+  text-align: center;
+  background: linear-gradient(180deg, var(--blue-band-2), var(--blue-band));
+  color: var(--gold-bright);
+  font-family: var(--font-head); font-style: italic; font-weight: 600;
+  letter-spacing: 2px; font-size: 16px;
+  padding: 9px; margin: 0;
+  border-top: 1px solid rgba(233,169,58,.18);
+  border-bottom: 1px solid rgba(233,169,58,.18);
+}
+.match-list { padding: 14px 16px 18px; display: flex; flex-direction: column; gap: 12px; }
+.match-row {
+  display: grid;
+  grid-template-columns: 34px 1fr 96px 1fr;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(180deg, var(--row-bg-2), var(--row-bg));
+  border: 1.4px solid rgba(233,169,58,.30);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.match-num {
+  width: 26px; height: 26px; flex: none;
+  display: grid; place-items: center;
+  border: 1.5px solid var(--gold-dim); border-radius: 7px;
+  color: var(--gold-bright); font-family: var(--font-head); font-size: 14px;
+}
+.team {
+  display: flex; align-items: center; gap: 11px; min-width: 0;
+  font-family: var(--font-head); font-weight: 600; letter-spacing: 1px;
+  font-size: clamp(13px, 1.15vw, 17px); color: #fff;
+}
+.team.home { justify-content: flex-start; }
+.team.away { flex-direction: row-reverse; justify-content: flex-start; text-align: right; }
+.team .tname { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crest {
+  width: 30px; height: 30px; flex: none; border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--font-head); font-size: 11px; font-weight: 700; color: #fff;
+  background: #1a2a4a; border: 1.5px solid rgba(255,255,255,.65);
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,.15);
+  overflow: hidden;
+}
+.crest img { width: 100%; height: 100%; object-fit: cover; }
+.score-box {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: #061735; border: 1.5px solid rgba(233,169,58,.30);
+  border-radius: 8px; height: 38px;
+  font-family: var(--font-head); font-size: 20px; font-weight: 700; color: #fff;
+}
+.score-box .sep { color: var(--text-faint); }
+.score-box.pending { color: var(--text-faint); font-size: 16px; letter-spacing: 2px; }
+
+/* ============================ STANDINGS (right) ============================ */
+.standings { width: 100%; border-collapse: collapse; font-size: 13px; }
+.standings thead th {
+  font-family: var(--font-head); font-weight: 500; letter-spacing: 1px;
+  color: var(--text-dim); font-size: 12px; text-transform: uppercase;
+  padding: 8px 4px; text-align: center; border-bottom: 1px solid rgba(233,169,58,.25);
+}
+.standings thead th.team-col { text-align: left; padding-left: 38px; }
+.standings tbody td { padding: 11px 4px; text-align: center; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+.standings tbody tr { border-bottom: 1px solid rgba(255,255,255,.05); }
+.standings tbody tr:last-child { border-bottom: none; }
+.standings .rank {
+  width: 22px; height: 22px; margin: 0 auto;
+  display: grid; place-items: center;
+  border: 1.4px solid var(--gold-dim); border-radius: 6px;
+  color: var(--gold-bright); font-family: var(--font-head); font-size: 12px;
+}
+.standings td.team-cell { text-align: left; }
+.standings .team-cell .tc {
+  display: flex; align-items: center; gap: 9px;
+  font-family: var(--font-head); font-weight: 600; letter-spacing: .5px;
+  color: #fff; font-size: 13px;
+}
+.standings .crest { width: 24px; height: 24px; font-size: 9px; }
+.standings .goals { white-space: nowrap; }
+.standings td.pts { color: var(--gold-bright); font-family: var(--font-head); font-weight: 700; font-size: 15px; }
+.standings tbody tr.top td.rank { border-color: var(--gold); }
+
+/* ============================ SCHEDULE (right) ============================ */
+.schedule { padding: 4px 16px 18px; }
+.schedule .sched-day {
+  font-family: var(--font-head); font-style: italic; color: var(--gold-bright);
+  letter-spacing: 1px; font-size: 15px; margin: 14px 0 8px;
+}
+.schedule .sched-row {
+  display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: baseline;
+  padding: 5px 0; color: var(--text-dim); font-size: 13px;
+  border-bottom: 1px dashed rgba(255,255,255,.06);
+}
+.schedule .sched-row .teams { color: #dfe8fb; font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.schedule .sched-row .date { color: var(--text-faint); font-variant-numeric: tabular-nums; }
+.schedule .sched-row .time { color: var(--gold-bright); font-variant-numeric: tabular-nums; min-width: 44px; text-align: right; }
+
+/* ============================ OVERVIEW ============================ */
+.overview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; }
+.ov-card { padding-bottom: 8px; }
+.ov-card .ov-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; border-bottom: 1px solid rgba(233,169,58,.2);
+}
+.ov-card .ov-head .ov-title { font-family: var(--font-head); letter-spacing: 1px; }
+.ov-card .ov-head .ov-title b { color: var(--gold-bright); }
+.ov-card .ov-head .ov-date { color: var(--text-faint); font-size: 12px; }
+.ov-card table { width: 100%; }
+.ov-empty { padding: 26px; text-align: center; color: var(--text-faint); }
+
+/* ============================ EMPTY STATE ============================ */
+.empty-state { padding: 60px 20px; text-align: center; color: var(--text-faint); }
+.empty-state h3 { font-family: var(--font-head); color: var(--text-dim); letter-spacing: 1px; margin-bottom: 8px; font-weight: 500; }
+
+/* ============================ FOOTER ============================ */
+.tfooter { text-align: center; padding: 34px 10px 6px; }
+.tfooter .slogan {
+  font-family: var(--font-head); letter-spacing: 6px; font-size: clamp(14px, 2vw, 22px);
+  color: transparent; -webkit-text-stroke: 1px var(--gold); position: relative;
+  display: inline-block;
+}
+.tfooter .slogan::before, .tfooter .slogan::after {
+  content: "—"; color: var(--gold); -webkit-text-stroke: 0; margin: 0 14px; vertical-align: middle;
+}
+.tfooter .hash { display: block; margin-top: 8px; color: var(--gold-bright); font-family: var(--font-head); letter-spacing: 4px; font-size: 13px; }
+
+/* ============================ ADMIN ============================ */
+.admin-bar {
+  display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px;
+  background: rgba(10,26,60,.7); border: 1.5px solid var(--panel-border);
+  border-radius: var(--radius); padding: 14px 18px; margin-bottom: 18px;
+}
+.admin-bar label { display: flex; flex-direction: column; gap: 5px; font-family: var(--font-head); letter-spacing: 1px; color: var(--text-dim); font-size: 12px; }
+.admin-bar select {
+  background: #07193b; color: #fff; border: 1.5px solid var(--gold-dim);
+  border-radius: 8px; padding: 9px 12px; font-family: var(--font-head); font-size: 14px; min-width: 200px;
+}
+.admin-actions { margin-left: auto; display: flex; gap: 10px; }
+.adm-btn { font-family: var(--font-head); letter-spacing: 1px; font-size: 14px; border-radius: 8px; padding: 11px 18px; cursor: pointer; border: 1.5px solid transparent; }
+.adm-btn.gold { background: linear-gradient(180deg, var(--gold-bright), var(--gold)); color: #07172f; font-weight: 600; }
+.adm-btn.gold:hover { filter: brightness(1.06); }
+.adm-btn.ghost { background: transparent; color: var(--text-dim); border-color: var(--gold-dim); }
+.adm-btn.ghost:hover { color: #fff; border-color: var(--gold); }
+
+.admin-editor { padding-bottom: 6px; }
+.admin-match-list { padding: 12px 16px; display: flex; flex-direction: column; gap: 10px; }
+.admin-match {
+  display: grid; grid-template-columns: 1fr 58px 14px 58px 1fr; align-items: center; gap: 10px;
+  background: linear-gradient(180deg, var(--row-bg-2), var(--row-bg));
+  border: 1.4px solid rgba(233,169,58,.3); border-radius: 10px; padding: 10px 14px;
+}
+.admin-match .am-team { font-family: var(--font-head); font-weight: 600; letter-spacing: .5px; color: #fff; font-size: 14px; }
+.admin-match .am-team.home { text-align: right; }
+.admin-match .am-team.away { text-align: left; }
+.admin-match .am-sep { text-align: center; color: var(--text-faint); }
+.admin-match .am-score {
+  width: 58px; text-align: center; background: #061735; color: #fff;
+  border: 1.5px solid var(--gold-dim); border-radius: 8px; padding: 8px 6px;
+  font-family: var(--font-head); font-size: 18px; -moz-appearance: textfield;
+}
+.admin-match .am-score::-webkit-outer-spin-button,
+.admin-match .am-score::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.admin-match .am-score:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 2px rgba(233,169,58,.2); }
+.admin-hint { padding: 4px 18px 18px; color: var(--text-faint); font-size: 12.5px; line-height: 1.5; }
+.admin-hint b { color: var(--gold-bright); }
+
+/* ============================ RESPONSIVE ============================ */
+@media (max-width: 1180px) {
+  .layout { grid-template-columns: 170px minmax(0,1fr); }
+  .results-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { order: -1; }
+  .period-list { flex-direction: row; flex-wrap: wrap; }
+  .period-btn { flex: 1 1 40%; }
+  .masthead { grid-template-columns: 1fr; text-align: center; gap: 14px; justify-items: center; }
+  .category-badge { align-items: center; }
+  .match-row { grid-template-columns: 26px 1fr 78px 1fr; gap: 6px; }
+  .team .tname { font-size: 12px; }
+}

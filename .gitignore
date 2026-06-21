@@ -1,0 +1,6 @@
+# Source art / πηγαία αρχεία λογοτύπων (PSD/PDF) — δεν χρειάζονται για το site
+tinoscuplogos/
+
+# OS junk
+.DS_Store
+Thumbs.db
