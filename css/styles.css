@@ -70,11 +70,12 @@ body::before {
   flex: none;
   overflow: hidden;
 }
-.brand-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.brand-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .brand-logo span { font-family: var(--font-head); font-weight: 700; font-size: 13px; letter-spacing: 2px; color: var(--gold-bright); text-align: center; line-height: 1.05; }
 .brand-logo .ball { font-size: 30px; }
 
-.title-block { display: flex; flex-direction: column; gap: 2px; }
+.title-block { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.title-img { height: clamp(46px, 7vw, 84px); width: auto; max-width: 100%; object-fit: contain; display: block; }
 .title-main { font-family: var(--font-head); font-weight: 700; letter-spacing: 3px; line-height: .92; }
 .title-main .t1 { font-size: clamp(34px, 5vw, 62px); color: #fff; }
 .title-main .t2 { font-size: clamp(34px, 5vw, 62px); color: var(--gold); }
@@ -313,15 +314,21 @@ body::before {
 .schedule .sched-row .time { color: var(--gold-bright); font-variant-numeric: tabular-nums; min-width: 44px; text-align: right; }
 
 /* ============================ OVERVIEW ============================ */
-.overview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; }
-.ov-card { padding-bottom: 8px; }
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+.ov-card { padding-bottom: 8px; display: flex; flex-direction: column; }
 .ov-card .ov-head {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
   padding: 14px 16px; border-bottom: 1px solid rgba(233,169,58,.2);
 }
-.ov-card .ov-head .ov-title { font-family: var(--font-head); letter-spacing: 1px; }
+.ov-card .ov-head .ov-title { font-family: var(--font-head); letter-spacing: 1px; white-space: nowrap; }
 .ov-card .ov-head .ov-title b { color: var(--gold-bright); }
-.ov-card .ov-head .ov-date { color: var(--text-faint); font-size: 12px; }
+.ov-card .ov-head .ov-date { color: var(--text-faint); font-size: 12px; text-align: right; }
+.ov-card > div { flex: 1; }
 .ov-card table { width: 100%; }
 .ov-empty { padding: 26px; text-align: center; color: var(--text-faint); }
 
@@ -386,13 +393,61 @@ body::before {
   .layout { grid-template-columns: 170px minmax(0,1fr); }
   .results-grid { grid-template-columns: 1fr; }
 }
-@media (max-width: 760px) {
-  .layout { grid-template-columns: 1fr; }
+
+/* Tablets / μικρά laptop */
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; gap: 14px; }
   .sidebar { order: -1; }
-  .period-list { flex-direction: row; flex-wrap: wrap; }
-  .period-btn { flex: 1 1 40%; }
-  .masthead { grid-template-columns: 1fr; text-align: center; gap: 14px; justify-items: center; }
+  .period-list {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 10px; padding: 4px 12px 14px;
+  }
+  .period-btn { flex: none; min-width: 0; }
+}
+
+/* Κινητά */
+@media (max-width: 760px) {
+  .app { padding: 16px 12px 32px; }
+  .masthead { grid-template-columns: 1fr; text-align: center; gap: 12px; justify-items: center; }
+  .title-block { align-items: center; width: 100%; }
+  .title-img { height: 48px; width: auto; max-width: 90vw; }
+  .title-sub { letter-spacing: 5px; }
+
+  .period-list { grid-template-columns: 1fr 1fr; }
+  .period-btn { font-size: 13.5px; letter-spacing: 1px; padding: 11px 6px; }
   .category-badge { align-items: center; }
-  .match-row { grid-template-columns: 26px 1fr 78px 1fr; gap: 6px; }
-  .team .tname { font-size: 12px; }
+  .category-badge .cat-line { justify-content: center; }
+  .category-badge .age { font-size: clamp(34px, 13vw, 56px); }
+
+  .filterbar { flex-direction: column; align-items: stretch; gap: 12px; }
+  .filter-group { flex-direction: column; align-items: center; gap: 7px; width: 100%; }
+  .filter-cap { text-align: center; }
+  .seg { justify-content: center; max-width: 100%; }
+  .seg-btn { padding: 8px 13px; font-size: 12.5px; }
+  .seg-ages .seg-btn { padding: 7px 11px; }
+
+  .tabs { justify-content: center; }
+
+  .overview-grid { grid-template-columns: 1fr; gap: 14px; }
+
+  /* η βαθμολογία να κυλάει οριζόντια μέσα στο panel αντί να σπρώχνει όλη τη σελίδα */
+  .std-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .std-wrap .standings { min-width: 340px; }
+
+  .match-row { grid-template-columns: 26px 1fr 70px 1fr; gap: 6px; padding: 9px 9px; }
+  .team { gap: 7px; font-size: 12.5px; }
+  .crest { width: 26px; height: 26px; }
+  .score-box { height: 34px; font-size: 18px; }
+  .standings { font-size: 12px; }
+  .standings thead th.team-col { padding-left: 30px; }
+}
+
+/* Στενά κινητά */
+@media (max-width: 420px) {
+  .brand-logo { width: 84px; height: 84px; }
+  .period-btn { flex: 1 1 100%; }
+  .match-row { grid-template-columns: 22px 1fr 60px 1fr; }
+  .team .tname { font-size: 11.5px; }
+  .standings thead th { font-size: 10.5px; padding: 7px 2px; }
+  .standings tbody td { padding: 9px 2px; }
 }

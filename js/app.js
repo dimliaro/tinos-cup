@@ -252,7 +252,7 @@
 
     const standings = el("section", "panel");
     standings.appendChild(el("div", "panel-title", "ΒΑΘΜΟΛΟΓΙΑ"));
-    const box = el("div"); box.style.padding = "0 14px 16px";
+    const box = el("div", "std-wrap"); box.style.padding = "0 14px 16px";
     box.appendChild(standingsTable(cat));
     standings.appendChild(box);
     col.appendChild(standings);
@@ -291,7 +291,7 @@
       card.appendChild(el("div", "ov-head",
         `<span class="ov-title"><b>${cat.gender}</b> ${cat.ageLabel}</span>
          <span class="ov-date">${cat.dateRange || ""}</span>`));
-      const box = el("div"); box.style.padding = "4px 14px 8px";
+      const box = el("div", "std-wrap"); box.style.padding = "4px 14px 8px";
       box.appendChild(standingsTable(cat, true));
       card.appendChild(box);
       card.style.cursor = "pointer";
